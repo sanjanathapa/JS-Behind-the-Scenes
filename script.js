@@ -103,6 +103,7 @@
 //3. this keyword
 //these 3 things are generated in a so called creation phase which happens right before execution.
 
+
 //---------------------------------IMPORTANT THING TO KEEP IN MIND-----------------------------------------
 //---------------------------------------------------------------------------------------------------------
 //execution context belonging to arrow functions do not get their own arguments keyword, nor do they get the "this" keyword.
