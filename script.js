@@ -77,7 +77,7 @@
 // NodeJS javascript runtime (is pretty similar to browser JS runtime). since we dont have a browser, ofcourse we
 //cant have the web APIs. because its the browser who provides these stuffs .
 
-//Global execution context is is created for top- level code.
+//Global execution context is created for top- level code.
 //what is execution context?
 //execution context is an abstract concept. basically it is as an environment in which a piece of JS is executed.
 //which stores all the necessary information for some code to be executed.
@@ -103,39 +103,42 @@
 //3. this keyword
 //these 3 things are generated in a so called creation phase which happens right before execution.
 
-
-//---------------------------------IMPORTANT THING TO KEEP IN MIND-----------------------------------------
+//***********************************IMPORTANT THING TO KEEP IN MIND***********************************************
 //---------------------------------------------------------------------------------------------------------
 //execution context belonging to arrow functions do not get their own arguments keyword, nor do they get the "this" keyword.
 //so basically arrow functions dont have the arguments object and the "this" keyword. instead they can use the
 //arguments object, and the "this" keyword from their closest regular function parent.
 
-//------Scope and Scope Chain-----
+//************************************************************************************************************** */
+//-------------------------------------Scope and Scope Chain-------------------------------------------------------
+//************************************************************************************************************** */
 // Scoping:- It controls how our program varibles are organized and accessed by the JS engine. Its asks the Question
 //"Where do variables live ?" or "where can we access a certain variables and where not?"
 
-//----Lexical Scoping-
+//**************************************************************************************************************** */
+//--------------------------------------Lexical Scoping--------------------------------------------------------------
+//***************************************************************************************************************** */
 //it means that the way variables are organized and accessed or (scoping) is entirely controlled by the placement of
 //functions and of blocks in the programs code.
 //for example :-
 //a function that is written inside another function has access to the variables of the parent function
 
-//Scope--> scope is the space or environment in which a certain variable is declared (variable environment in case of
-//functions). There is global scope, function scope, and block scope
+//--> Scope--> scope is the space or environment in which a certain variable is declared (variable environment in
+//case of functions). There is global scope, function scope, and block scope
 
 //difference between Scope and  variable environment?
-//Scope of a variable-> is basically the entire  region of our code, where a certain variable can be accessed.
+//****Scope of a variable-> is basically the entire  region of our code, where a certain variable can be accessed.
 
-//--Global Scope:-
+/*******-Global Scope:-
 // 1. Global scope is for top level code. i.e declared outside of any function or block.
 // 2.Variables declared in global scope are accessible everywhere in all functions and all blocks.
 
-//--Function Scope:-
+//******Function Scope:-
 //--1. variables are accessible only inside function, NOT outside. Technically the same as the functions variable
 //     environment
-//--2. Also called Local Scope. All type of functions craete theiri own scope
+//--2. Also called Local Scope. All type of functions create their own scope
 
-//in traditionally , ony functons used to create scopes in JS. But starting in ES6, blocks also creates scopes now.
+//in traditionally , only functions used to create scopes in JS. But starting in ES6, blocks also creates scopes now.
 //and with blocks we mean everything that is between curly braces, such as the block of an If Statement or a For Loop.
 //so just like with functions, variables declared inside a block are only accessible inside that block and not outside
 //of it.
@@ -174,12 +177,17 @@ first();
 //scope is equal to its variable environment.
 //the scope is a one way street: a scope will never ever have access to the variables of an inner scope.
 //the scope chain in a certain scope is equal to adding together all the variables environment of the all parents scope.
+
+
+
+//*************************************************************************************************************** */
 //-----------------------------------------------------SCOPE IN PRACTICE-------------------------------------------
-//-----------------------------------------------------------------------------------------------------------------
+//**************************************************************************************************************** */
 
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
   //console.log(firstName)
+
   function printAge() {
     //const output = `${firstName}, you are ${age}, born in ${birthYear}`;
     let output = `${firstName}, you are ${age}, born in ${birthYear}`; // going to redefine it in its child scope
@@ -217,28 +225,34 @@ console.log(calcAge(1991));
 //printAge(); //we cannot call the printAge function outside of its scope, for the same reason just like we cant access the age variable.
 //firstName has same variable name but they are completely different variable with the same name . but it is totally fine as they are defined in different scopes.
 
+//************************************************************************************************************** */
 //------------------------------------------------HOISTING-----------------------------------------------
-//-------------------------------------------------------------------------------------------------------
+//************************************************************************************************************* */
+
 //how variables are actuallly created in JS
-//hoisting makes some types of variables accessible/usable in the code before they are actually declared. variables lifted to the top of
-//their scope.
-//behind the scenes
-//Before execution, code is scanned for variable declarations, and for each variables, a new property is created in the variable
-//environment object. this happens during the phase of creation of execution context
-//Hoisting doesnot work for all variable types.
+//hoisting makes some types of variables accessible/usable in the code before they are actually declared. variables
+//lifted to the top of their scope.
+
+//---->>behind the scenes
+//Before execution, code is scanned for variable declarations, and for each variables, a new property is created in
+//the variable environment object. this happens during the phase of creation of execution context.
+
+//Hoisting does not work for all variable types.
 //Lets see on which types it works:
 
-//1>function declaration-are actually hoisted and the initial  value in the variable environment is set to the actual function. Again,
+//1>function declaration-are actually hoisted and the initial  value in the variable environment is set to the actual
+// function. Again,
 //Because they are stored in the variable environment object, even before the code start executing.
 
 //Var variables-
-//varibles declared with var are also hoisted, but hoisting work in a different way here. so unlike functions, whe we try to access a
-//"Var" variable before its declared in a code, we dont get the declared value, but we get undefined.
+//varibles declared with var are also hoisted, but hoisting work in a different way here. so unlike functions, whe we
+// try to access a "Var" variable before its declared in a code, we dont get the declared value, but we get undefined.
 
 //Let and const
-//on the other hand let and const variables are never hoisted. technically they are hoisted but not in practice. But their value is
-//basically set to an initialized. so there is no value to work with at all. and so in practice , it is as if hoisting was not happening
-//at all. instead we say that there variable are placed in so called Temporal Dead Zone, which makes it so that we cant access the variables
+//on the other hand let and const variables are never hoisted. technically they are hoisted but not in practice. But
+//their value is basically set to an initialized. so there is no value to work with at all. and so in practice , it
+//is as if hoisting was not happening at all. instead we say that there variable are placed in so called Temporal
+//Dead Zone, which makes it so that we cant access the variables
 //between the beginning of the scope and the place where variblesa are declared.
 //the consequences is , if we attempt to use a "let" and "const" variable before it is declared, we get an error.
 
@@ -251,11 +265,13 @@ console.log(calcAge(1991));
 //so basically each and every let and const variable get their own TDZ that starts at the beginning of the scope until the line where
 //it is defined. and the variables only safe to use after the TDZ.
 
-//-----------------------------Hoisting and TDZ in practice-------------------------
-//----------------------------------------------------------------------------------
+//-**************************************************************************************************************
+//---------------------------------------Hoisting and TDZ in practice---------------------------------------------
+//*************************************************************************************************************** */
 
 //--Hoisting with variables
 //trying to use following three variables before declaring them
+
 console.log(me); //variables declared with var are actually hoisted, but they are hoisted to the value of undefined
 //console.log(job); //will throw a referenceerror as the job variable is still in TDZ (TDZ starts from the beginning of the current
 //scope(in this case, its the global scope) until the point of the code where it is defined)
@@ -274,9 +290,10 @@ const year = 1999;
 //console.log(addArrow(2,3));    //will throw the same error of referenceerror
 
 //now calling the function which assigned with "var"
-//console.log(addExpression);   //it is hoisted and set to "undefined". so we are trying to call an "undefined" thing. si gives error
+//console.log(addExpression);   //it is hoisted and set to "undefined". so we are trying to call an "undefined" thing. so gives error
 //saying that undefined is not a function
 // undefined(2,3)
+
 //console.log(addExpression());
 //console.log("***************************",addArrow1(2,3));
 
@@ -322,9 +339,11 @@ console.log(x === window.x);
 console.log(y === window.y);
 console.log(z === window.z);
 
-///------------------------------------------------------The This Keyword-----------------------------------------------------
-//-----------------------------------------------------------------------------------------------------------------------------
-//this keyword/variable : special variable that is created for everyone context(every function). takes the value of (points to) the "owner"
+//**************************************************************************************************************** */
+//------------------------------------------------------The This Keyword--------------------------------------------
+//***************************************************************************************************************** */
+//this keyword/variable : special variable that is created for everyone context(every function). takes the value of
+//(points to) the "owner"
 // of the function in which the "this" keyword is used.
 //--value of "this" is NOT static.it's not always the same  it depends on how the function is called, and its value is only assigned when
 //the function is actually called.
@@ -404,15 +423,15 @@ matilda.calcAgee12();
 //const f = jonas.calcAgee1;
 //f(); //now here f becomes the regular function. there is no owner of this functio
 
-
-//---------------------------Regular functions VS Arrow functions--------------------------------------
-//-----------------------------------------------------------------------------------------------------
- var fname = "sanjana Thapa";
+//**************************************************************************************************************** */
+//--------------------------------------Regular functions VS Arrow functions--------------------------------------
+//**************************************************************************************************************** */
+var fname = 'sanjana Thapa';
 const jonas1 = {
-  fName : "sanjana",
+  fName: 'sanjana',
   year: 1999,
   calcAgee1: function () {
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX",2022 - this.year);
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXX', 2022 - this.year);
   },
   greet: () => {
     console.log('++++++++++++++++++++++++++++++++++++++', this);
@@ -426,24 +445,23 @@ jonas1.calcAgee1();
 //another pitfall of using "this" keyword is when we have a function inside of a method .
 
 const jonas2 = {
-  fName : "Ujjwal",
+  fName: 'Ujjwal',
   year: 1998,
   calcAgee1: function () {
     console.log(2022 - this.year);
 
-    //solution 1--> by creating a variable 
+    //solution 1--> by creating a variable
     // const self =  this;
     // const isMillenial = function () {
     //   console.log(self.year >= 1982 && self.year <= 2000);
     // }
 
     //solution 2
-    const isMillenial = ()=>{
-      console.log(this,"Sanjana");
-      console.log("!!!!!!!!!!!!!",this.year >= 1982 && this.year <= 2000);
-    }
+    const isMillenial = () => {
+      console.log(this, 'Sanjana');
+      console.log('!!!!!!!!!!!!!', this.year >= 1982 && this.year <= 2000);
+    };
     isMillenial();
-
   },
   greet: () => {
     console.log('++++++++++++++++++++++++++++++++++++++', this);
@@ -453,18 +471,18 @@ const jonas2 = {
 //jonas1.greet();
 jonas2.calcAgee1();
 
-
-
-//----------------------------------------------------Primitives VS Objects------------------------------------------------------------
-//---------------------------------------------------------------OR--------------------------------------------------------------------
-//----------------------------------------------------Primitive Types VS Reference Types-----------------------------------------------------
+//**************************************************************************************************************** */
+//----------------------------------------------------Primitives VS Objects-----------------------------------------
+//---------------------------------------------------------------OR-------------------------------------------------
+//----------------------------------------------------Primitive Types VS Reference Types----------------------------
+//**************************************************************************************************************** */
 //primitives are like --> number, boolean, string, undefined, null, symbol, bigint
 
 let age = 30;
-console.log(age)
+console.log(age);
 let oldAge = age;
-age= 31;
-console.log(age)
+age = 31;
+console.log(age);
 console.log(oldAge);
 
 //variables actually holds a memory address.
@@ -472,74 +490,71 @@ console.log(oldAge);
 //value at a certain memory address is immutable.
 
 const mee = {
-    name: "sanjanathapa",
-    age: 22,
+  name: 'sanjanathapa',
+  age: 22,
 };
 
 const friend1 = mee;
 friend1.age = 25;
 //friend1.age1 = 25;
-console.log("Friend", friend1)
-console.log("ME", mee)
+console.log('Friend', friend1);
+console.log('ME', mee);
 
 //---Primitive and reference practice
 
 //primitive types
-let lastName = "Williams";
+let lastName = 'Williams';
 let oldLastName = lastName;
-lastName = "Davis";
+lastName = 'Davis';
 console.log(lastName, oldLastName);
 
 const jessica = {
   firstName: 'Jessica',
-  lastName: "Williams",
-  age: 27
+  lastName: 'Williams',
+  age: 27,
 };
 
 //reference types
 const marriedJessica = jessica;
 //we are actually just copying the reference, which will then point to the same object.
-marriedJessica.lastName = "Davis";
-console.log("Before marriage", jessica);
-console.log("After marriage", marriedJessica)
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage', jessica);
+console.log('After marriage', marriedJessica);
 //marriedJessica = {} // cant assign a new object to the variable assigned with const.
-
 
 //Copying objects
 const jessica2 = {
   firstName: 'Jessica',
-  lastName: "Williams",
+  lastName: 'Williams',
   age: 27,
-  family: ["Alice", "Bob"]
+  family: ['Alice', 'Bob'],
 };
 //if we wanted to copy this object, we could use a function called object.assign. this function essentially merge two
 // objects and then return a new one.
 
 const jessicaCopy = Object.assign({}, jessica2);
-jessicaCopy.lastName = "Davis";
+jessicaCopy.lastName = 'Davis';
 // console.log("Before marriage", jessica2);
 // console.log("After marriage", jessicaCopy)
 
 //now we can preserve the original lastName "Williams", after we change the lastName on this other object here.
-//behind the dcene--> so a new object was infact created in the heap and jessicaCopy is now pointing to that object. so 
+//behind the dcene--> so a new object was infact created in the heap and jessicaCopy is now pointing to that object. so
 //it has a reference to that object.
 
-//////////////////////////////But this technique of Object.assign only works on the first level. in other words, if we 
-//have an object inside the object, then this inner object will actually still be the same. so it will still point to 
+//////////////////////////////But this technique of Object.assign only works on the first level. in other words, if we
+//have an object inside the object, then this inner object will actually still be the same. so it will still point to
 //the same place in memory. so this Object.assign only creates a shallow copy and not a deep clone.
 
 //so a Shallow Copy will only copy the properties in the first level while deep clone would copy everything.
 
 //so now Suppose, jessicaCopy wants to increase her family members so:-
-jessicaCopy.family.push("Mary");
-jessicaCopy.family.push("John");
-console.log("Before marriage", jessica2);
-console.log("After marriage", jessicaCopy);
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+console.log('Before marriage', jessica2);
+console.log('After marriage', jessicaCopy);
 
 //object.assign did not really, behind the scenes, copy it to the new object.
 //now a deep clone is what we need here.
 //How to create a deep clone ? next topic..we do this work using the librry lo-dash
-
-
 
 ////**************************************---END OF SECTION 8----****************************** */
